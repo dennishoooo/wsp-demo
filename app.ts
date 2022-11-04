@@ -11,7 +11,11 @@ app.get("/", (req, res) => {
 });
 
 app.use((req, res) => {
-  let filePath = path.join(__dirname, "public", "404.html");
+  let filePath = path.join(
+    "/Users/dennisho/code/wsp-demo",
+    "public",
+    "404.html"
+  );
   console.log(filePath);
   res.sendFile(path.join(filePath));
 });
