@@ -1,5 +1,8 @@
 import express from "express";
 import path from "path";
+import { client } from "./db";
+
+client.connect();
 
 const app = express();
 const port = 8080;
@@ -19,8 +22,15 @@ app.get("/message", (req, res) => {
   res.json({ message: "ariel so stupid" });
 });
 
-app.post("/login", (req, res) => {
-  console.log(req.body);
+app.post("/login", async (req, res) => {
+  const { username, password } = req.body;
+  console.log(username, password);
+
+  let result = await client.query(
+    `insert into users (username, password) values ($1, $2)`,
+    [username, password]
+  );
+  console.log(result);
   res.json({ message: "received" });
 });
 
