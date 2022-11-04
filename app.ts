@@ -6,9 +6,7 @@ const port = 8080;
 
 console.log(__dirname);
 
-app.get("/", (req, res) => {
-  res.end("hi");
-});
+app.use(express.static("public"));
 
 app.use((req, res) => {
   let filePath = path.join(__dirname, "public", "404.html");
